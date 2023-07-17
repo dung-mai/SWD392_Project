@@ -1,5 +1,6 @@
 ﻿@page
-@model SWD392_PracinicalManagement.Pages.PracinicalCategory.UpdateModel
+@model SWD392_PracinicalManagement.Pages.PracinicalCategories.UpdateModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
 	Layout = "_Layout";
 }
@@ -19,22 +20,24 @@
 </style>
 <body>
 	<div class="container">
+		
 		<div class="row">
 			<div class="col text-center">
 				<h1>Thêm danh mục khám lâm sàng</h1>
 			</div>
 		</div>
+		<form method="post">
 		<div class="row">
 			<div class="col">
 				<div class="form-group p-3">
 					<label for="pracinicalCategoryId" class="col-sm-6 col-form-label">Mã danh mục:</label>
-					<input type="text" class="form-control" name="id">
+					<input type="text" class="form-control" name="id" readonly value="@Model.pracinicalCategory.PracinicalCategoryId">
 				</div>
 			</div>
 			<div class="col">
 				<div class="form-group p-3">
 					<label for="pracinicalCategoryName" class="col-sm-6 col-form-label">Tên danh mục:</label>
-					<input type="text" class="form-control" name="name">
+						<input type="text" class="form-control" name="pracinicalCategoryName" required value="@Model.pracinicalCategory.PracinicalCategoryName">
 				</div>
 			</div>
 			<div class="w-100"></div>
@@ -42,26 +45,26 @@
 				<div class="col form-group p-3">
 					<label for="departmentId" class="col-sm-6 col-form-label">Chuyên khoa:</label>
 					<select class="form-control" id="departmentId" name="department">
-						<option value="">Chọn chuyên khoa</option>
-						<option value="Smith">KHOA HUYẾT HỌC TRUYỀN MÁU</option>
-						<option value="Johnson">KHOA VI SINH VÀ LABO LAO CHUẨN QUỐC GIA</option>
-						<option value="Doe">KHOA CHẨN ĐOÁN HÌNH ẢNH</option>
-						<option value="Doe">KHOA GIẢI PHẪU BỆNH</option>
+						@foreach (var department in Model.departments)
+						{
+							 <option value="@department.DepartmentId">@department.DepartmentName</option>
+						}
 					</select>
 				</div>
 			</div>
 			<div class="col">
 				<div class="form-group p-3">
 					<label for="pracinicalCategoryName" class="col-sm-6 col-form-label">Mô tả:</label>
-					<textarea class="form-control" id="description" rows="2" name="description"></textarea>
+					<textarea class="form-control" id="description" rows="2" name="description" >@Model.pracinicalCategory.Desctiption</textarea>
 				</div>
 			</div>
 		</div>
 
 		<div class="row mt-3">
 			<div class="col" style="margin-left: 10px;">
-				<button class="btn btn-primary" type="button">Cập nhật</button>
+				<button class="btn btn-primary" type="submit">Cập nhật</button>
 			</div>
 		</div>
+		</form>
 	</div>
 </body>

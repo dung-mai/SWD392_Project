@@ -28,11 +28,11 @@ namespace SWD392_PracinicalManagement.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var builder = new ConfigurationBuilder()
-                              .SetBasePath(Directory.GetCurrentDirectory())
-                              .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
-            IConfigurationRoot configuration = builder.Build();
-            optionsBuilder.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+            if (!optionsBuilder.IsConfigured)
+            {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+                optionsBuilder.UseSqlServer("server=DESKTOP-QG4POQ2\\MINHTIEN; database =SWD392_FinalProject;uid=sa;pwd=123456;TrustServerCertificate=true");
+            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -212,12 +212,17 @@ namespace SWD392_PracinicalManagement.Models
                 entity.Property(e => e.DepartmentId).HasColumnName("departmentId");
 
                 entity.Property(e => e.Desctiption)
-                    .HasColumnType("text")
+                    .HasMaxLength(200)
                     .HasColumnName("desctiption");
 
                 entity.Property(e => e.PracinicalCategoryName)
                     .HasMaxLength(50)
                     .HasColumnName("pracinicalCategoryName");
+
+                entity.HasOne(d => d.CreatedByNavigation)
+                    .WithMany(p => p.PracinicalCategories)
+                    .HasForeignKey(d => d.CreatedBy)
+                    .HasConstraintName("FK_PracinicalCategory_Account");
 
                 entity.HasOne(d => d.Department)
                     .WithMany(p => p.PracinicalCategories)

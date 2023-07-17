@@ -1,5 +1,6 @@
 ﻿@page
-@model SWD392_PracinicalManagement.Pages.PracinicalCategory.AddModel
+@model SWD392_PracinicalManagement.Pages.PracinicalCategories.AddModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
 }
 @{
@@ -140,11 +141,12 @@
 				<h1>Thêm danh mục khám lâm sàng</h1>
 			</div>
 		</div>
+		<form method="post">
 		<div class="row">
 			<div class="col">
 				<div class="form-group p-3">
 					<label for="pracinicalCategoryId" class="col-sm-6 col-form-label">Mã danh mục:</label>
-					<input type="text" class="form-control">
+					<input type="text" class="form-control" readonly>
 				</div>
 			</div>
 			<div class="col">
@@ -159,10 +161,10 @@
 					<label for="departmentId" class="col-sm-6 col-form-label">Chuyên khoa:</label>
 					<select class="form-control" name="department">
 						<option value="">Chọn chuyên khoa</option>
-						<option value="Smith">KHOA HUYẾT HỌC TRUYỀN MÁU</option>
-						<option value="Johnson">KHOA VI SINH VÀ LABO LAO CHUẨN QUỐC GIA</option>
-						<option value="Doe">KHOA CHẨN ĐOÁN HÌNH ẢNH</option>
-						<option value="Doe">KHOA GIẢI PHẪU BỆNH</option>
+						@foreach (var department in Model.departments)
+						{
+							<option value="@department.DepartmentId">@department.DepartmentName</option>
+						}
 					</select>
 				</div>
 			</div>
@@ -175,11 +177,24 @@
 		</div>
 
 		<div class="row mt-3">
-			<div class="col">
-				<button style="margin-left: 10px;"  class="btn btn-primary" type="button">Thêm</button>
-				<button style="margin-left: 10px;" class="btn btn-info" type="button">Import</button>
-			</div>
+					<div class="col-1">
+						<button style="margin-left: 10px;" class="btn btn-primary" type="submit">Thêm</button>
+					</div>
+					
 		</div>
+		</form>
+		<form method="POST" asp-page-handler="ImportFile" id="importFile" enctype="multipart/form-data">
+		<div class="row mt-3">
+		
+		  
+		<div class="col-2 mt-2 mx-3">
+			<input type="file" name="file" id="file" />
+		</div>
+		<div class="col-2">
+			<button style="margin-left: 10px;" form="importFile" class="btn btn-info" type="submit">Import</button>
+		</div>
+		</div>
+		</form>
 
 		<div class="table-responsive">
 			<div class="table-wrapper">
@@ -199,22 +214,25 @@
 							<th class="h2">Mô tả</th>
 							<th class="h2">Ngày tạo</th>
 							<th class="h2">Người tạo</th>
+							<th class="h2">Hành động</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>1</td>
-							<td>Chụp x-quang</td>
-							<td>Khoa ngoại</td>
-							<td></td>
-							<td>22/11/2002</td>
-							<td>Ngô Minh Tiến</td>
-							<td>
-								<a href="" class="edit"><i class="material-icons" title="Edit">&#xE254;</i></a>
-								<a href="" class="delete"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-							</td>
-						</tr>
-
+						@foreach (var category in Model.pracinicalCategories)
+						{
+							<tr>
+								<td>@category.PracinicalCategoryId</td>
+								<td>@category.PracinicalCategoryName</td>
+								<td>@category.Department.DepartmentName</td>
+								<td>@category.Desctiption</td>
+								<td>@category.CreatedDate?.ToString("dd/MM/yyyy")</td>
+								<td>@category.CreatedByNavigation.Name</td>
+								<td>
+									<a href="/PracinicalCategories/Update?id=@category.PracinicalCategoryId" class="edit"><i class="material-icons" title="Edit">&#xE254;</i></a>
+									<a href="/PracinicalCategories/Delete?id=@category.PracinicalCategoryId" class="delete"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+								</td>
+							</tr>
+						}
 					</tbody>
 				</table>
 			</div>
