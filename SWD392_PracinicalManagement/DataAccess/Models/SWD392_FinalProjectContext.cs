@@ -63,7 +63,7 @@ namespace SWD392_PracinicalManagement.DataAccess.Models
                     .HasColumnName("name");
 
                 entity.Property(e => e.Password)
-                    .HasColumnType("text")
+                    .HasMaxLength(100)
                     .HasColumnName("password");
 
                 entity.Property(e => e.PhoneNumber)
@@ -74,11 +74,6 @@ namespace SWD392_PracinicalManagement.DataAccess.Models
                 entity.Property(e => e.RoleId).HasColumnName("roleId");
 
                 entity.Property(e => e.Status).HasColumnName("status");
-
-                entity.HasOne(d => d.Role)
-                    .WithMany(p => p.Accounts)
-                    .HasForeignKey(d => d.RoleId)
-                    .HasConstraintName("ddddd");
             });
 
             modelBuilder.Entity<Department>(entity =>

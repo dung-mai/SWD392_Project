@@ -17,6 +17,14 @@
       "PackagePath": "staticwebassets\\css\\bootstrap.css.map"
     },
     {
+      "Id": "C:\\Users\\Admin\\Documents\\GitHub\\SWD_PROJECT\\SWD392_PracinicalManagement\\wwwroot\\css\\mdb.min.css",
+      "PackagePath": "staticwebassets\\css\\mdb.min.css"
+    },
+    {
+      "Id": "C:\\Users\\Admin\\Documents\\GitHub\\SWD_PROJECT\\SWD392_PracinicalManagement\\wwwroot\\css\\mdb.min.css.map",
+      "PackagePath": "staticwebassets\\css\\mdb.min.css.map"
+    },
+    {
       "Id": "C:\\Users\\Admin\\Documents\\GitHub\\SWD_PROJECT\\SWD392_PracinicalManagement\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
@@ -83,6 +91,10 @@
     {
       "Id": "C:\\Users\\Admin\\Documents\\GitHub\\SWD_PROJECT\\SWD392_PracinicalManagement\\wwwroot\\img\\users.svg",
       "PackagePath": "staticwebassets\\img\\users.svg"
+    },
+    {
+      "Id": "C:\\Users\\Admin\\Documents\\GitHub\\SWD_PROJECT\\SWD392_PracinicalManagement\\wwwroot\\js\\mdb.min.js",
+      "PackagePath": "staticwebassets\\js\\mdb.min.js"
     },
     {
       "Id": "C:\\Users\\Admin\\Documents\\GitHub\\SWD_PROJECT\\SWD392_PracinicalManagement\\wwwroot\\js\\site.js",

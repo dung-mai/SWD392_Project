@@ -13,7 +13,7 @@ builder.Services.AddDbContext<SWD392_FinalProjectContext>(options =>
     options.UseSqlServer(connectionString));
 
 builder.Services.AddTransient<IAccountRepository, AccountRepository>();
-builder.Services.AddTransient<IDepartmentRepository, IDepartmentRepository>();
+//builder.Services.AddTransient<IDepartmentRepository, DepartmentRepository>();
 builder.Services.AddTransient<IDoctorRepository, DoctorRepository>();
 builder.Services.AddTransient<IPracinicalCategoryRepository, PracinicalCategoryRepository>();
 builder.Services.AddTransient<IPracinicalServiceRepository, PracinicalServiceRepository>();
