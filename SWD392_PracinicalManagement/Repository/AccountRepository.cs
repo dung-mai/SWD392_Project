@@ -19,5 +19,25 @@ namespace SWD392_PracinicalManagement.Repository
                 .Include(acc => acc.Role)
                 .FirstOrDefault(acc => acc.Email == email && acc.Password == password);
         }
+
+        public bool UpdateAccountInfo(Account account)
+        {
+            Account? updateAccount =  _context.Accounts
+                .Include(acc => acc.Role)
+                .FirstOrDefault(acc => acc.AccountId == account.AccountId);
+
+            if(updateAccount == null)
+            {
+                return false;
+            }
+
+            updateAccount.Name = account.Name;
+            updateAccount.PhoneNumber = account.PhoneNumber;
+            updateAccount.Address = account.Address;
+            updateAccount.Gender = account.Gender;
+            updateAccount.Dob = account.Dob;
+            _context.SaveChanges();
+            return true;
+        }
     }
 }
