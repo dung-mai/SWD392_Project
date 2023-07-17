@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using SWD392_PracinicalManagement.DataAccess.Models;
+using SWD392_PracinicalManagement.Models;
 using SWD392_PracinicalManagement.IRepository;
 using SWD392_PracinicalManagement.IService;
 using SWD392_PracinicalManagement.Repository;
@@ -13,11 +13,12 @@ builder.Services.AddDbContext<SWD392_FinalProjectContext>(options =>
     options.UseSqlServer(connectionString));
 
 builder.Services.AddTransient<IAccountRepository, AccountRepository>();
-builder.Services.AddTransient<IDepartmentRepository, IDepartmentRepository>();
+builder.Services.AddTransient<IDepartmentRepository, DepartmentRepository>();
 builder.Services.AddTransient<IDoctorRepository, DoctorRepository>();
 builder.Services.AddTransient<IPracinicalCategoryRepository, PracinicalCategoryRepository>();
 builder.Services.AddTransient<IPracinicalServiceRepository, PracinicalServiceRepository>();
 builder.Services.AddTransient<IExaminationResultRepository, ExaminationResultRepository>();
+builder.Services.AddTransient<IExaminationFormRepository, ExaminationFormRepository>();
 builder.Services.AddTransient<IMedicalRecordRepository, MedicalRecordRepository>();
 
 builder.Services.AddTransient<IAccountService, AccountService>();
@@ -26,6 +27,7 @@ builder.Services.AddTransient<IDoctorService, DoctorService>();
 builder.Services.AddTransient<IPracinicalCategoryService, PracinicalCategoryService>();
 builder.Services.AddTransient<IPracinicalServiceService, PracinicalServiceService>();
 builder.Services.AddTransient<IExaminationResultService, ExaminationResultService>();
+builder.Services.AddTransient<IExaminationFormService, ExaminationFormService>();
 builder.Services.AddTransient<IMedicalRecordService, MedicalRecordService>();
 
 builder.Services.AddSession();

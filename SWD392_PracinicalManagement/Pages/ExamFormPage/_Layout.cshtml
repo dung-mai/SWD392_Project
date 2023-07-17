@@ -90,12 +90,12 @@
                     </li>
                     <li class="dropdown nav-item">
                         <a class="dropdown-account-toggle ms-3" href="#">
-                                    <img src="~/img/default-avatar.jpg" class="img-user" alt="User Photo">
+                            <img src="~/img/default-avatar.jpg" class="img-user" alt="User Photo">
                             <i class="fas fa-solid fa-caret-down" style="font-size: 16px"></i>
                         </a>
                         <div class="dropdown-menu-list dropdown-menu-end">
 
-                            <a class="dropdown-item" asp-page="/Logout">
+                            <a class="dropdown-item" href="">
                                 <img src="~/img/user.svg" alt="alt" /> Thông tin cá nhân
                             </a>
                             <a class="dropdown-item" href="">
@@ -108,7 +108,7 @@
 
             <!-- Navbar End -->
             <div class="container">
-                    @RenderBody()
+                @RenderBody()
             </div>
         </main>
     </div>
