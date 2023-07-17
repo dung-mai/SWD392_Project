@@ -6,11 +6,8 @@ namespace SWD392_PracinicalManagement.Pages
 {
     public class PrivacyModel : PageModelBase
     {
-        private readonly ILogger<PrivacyModel> _logger;
-
-        public PrivacyModel(ILogger<PrivacyModel> logger)
+        public PrivacyModel()
         {
-            _logger = logger;
             authorizedRoles = new string[] { "manager", "doctor"};
         }
 
