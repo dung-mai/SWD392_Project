@@ -7,7 +7,12 @@ namespace SWD392_PracinicalManagement.Service
 {
     public class ExaminationFormService : IExaminationFormService
     {
-        IExaminationFormRepository repo = new ExaminationFormRepository();
+        IExaminationFormRepository repo;
+
+        public ExaminationFormService(IExaminationFormRepository repo)
+        {
+            this.repo = repo;
+        }
 
         public List<ExaminationForm> GetExaminationFormByDate(DateTime MeetingDate)
         {

@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using SWD392_PracinicalManagement.DataAccess.Models;
+using SWD392_PracinicalManagement.Models;
 
 namespace SWD392_PracinicalManagement.Pages.MedicalRecord
 {
     public class Detail : PageModel
     {
 
-        public DataAccess.Models.MedicalRecord? Md;
+        public Models.MedicalRecord? Md;
         public string ErrorMessage = "";
         private SWD392_FinalProjectContext _context;
         public Detail(SWD392_FinalProjectContext context)

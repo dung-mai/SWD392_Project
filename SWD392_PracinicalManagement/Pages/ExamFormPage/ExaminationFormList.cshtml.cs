@@ -9,11 +9,12 @@ namespace SWD392_PracinicalManagement.Pages.ExamFormPage
 {
     public class ExaminationFormListModel : PageModelBase
     {
-        IExaminationFormService service = new ExaminationFormService();
+        IExaminationFormService service;
         public List<ExaminationForm> examFormList;
 
-        public ExaminationFormListModel( )
-        {    
+        public ExaminationFormListModel(IExaminationFormService service)
+        {
+            this.service = service;
             authorizedRoles = new string[] { "manager", "doctor" };
         }
 

@@ -6,7 +6,12 @@ namespace SWD392_PracinicalManagement.Repository
 {
     public class ExaminationFormRepository : IExaminationFormRepository
     {
-        SWD392_FinalProjectContext context = new SWD392_FinalProjectContext();
+        SWD392_FinalProjectContext context;
+
+        public ExaminationFormRepository(SWD392_FinalProjectContext context)
+        {
+            this.context = context;
+        }
 
         public List<ExaminationForm> GetExaminationFormByDate(DateTime MeetingDate)
         {
