@@ -24,7 +24,6 @@
     <Folder Include="DataAccess\Models\" />
     <Folder Include="IService\" />
     <Folder Include="Service\" />
-    <Folder Include="Repository\" />
   </ItemGroup>
 
 </Project>

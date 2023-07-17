@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace SWD392_PracinicalManagement.DataAccess.Models
+namespace SWD392_PracinicalManagement.Models
 {
     public partial class SWD392_FinalProjectContext : DbContext
     {
@@ -19,6 +19,7 @@ namespace SWD392_PracinicalManagement.DataAccess.Models
         public virtual DbSet<Account> Accounts { get; set; } = null!;
         public virtual DbSet<Department> Departments { get; set; } = null!;
         public virtual DbSet<Doctor> Doctors { get; set; } = null!;
+        public virtual DbSet<ExaminationForm> ExaminationForms { get; set; } = null!;
         public virtual DbSet<ExaminationResult> ExaminationResults { get; set; } = null!;
         public virtual DbSet<MedicalRecord> MedicalRecords { get; set; } = null!;
         public virtual DbSet<PracinicalCategory> PracinicalCategories { get; set; } = null!;
@@ -30,7 +31,7 @@ namespace SWD392_PracinicalManagement.DataAccess.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("server=.\\DUNG;database=SWD392_FinalProject;uid=sa;pwd=123456;TrustServerCertificate=true");
+                optionsBuilder.UseSqlServer("server=DESKTOP-46IASDC\\SQLEXPRESS; database = SWD392_FinalProject;uid=sa;pwd=khai2112002; Trusted_Connection=SSPI;Encrypt=false;TrustServerCertificate=true");
             }
         }
 
@@ -117,6 +118,25 @@ namespace SWD392_PracinicalManagement.DataAccess.Models
                     .HasForeignKey(d => d.AccountId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Doctor_Account");
+            });
+
+            modelBuilder.Entity<ExaminationForm>(entity =>
+            {
+                entity.ToTable("ExaminationForm");
+
+                entity.Property(e => e.MeetingDate).HasColumnType("datetime");
+
+                entity.Property(e => e.Note).HasMaxLength(200);
+
+                entity.HasOne(d => d.DoctorCodeNavigation)
+                    .WithMany(p => p.ExaminationForms)
+                    .HasForeignKey(d => d.DoctorCode)
+                    .HasConstraintName("FK_ExaminationForm_Doctor");
+
+                entity.HasOne(d => d.Patient)
+                    .WithMany(p => p.ExaminationForms)
+                    .HasForeignKey(d => d.PatientId)
+                    .HasConstraintName("FK_ExaminationForm_Account");
             });
 
             modelBuilder.Entity<ExaminationResult>(entity =>

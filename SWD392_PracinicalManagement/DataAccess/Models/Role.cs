@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SWD392_PracinicalManagement.DataAccess.Models
+namespace SWD392_PracinicalManagement.Models
 {
     public partial class Role
     {

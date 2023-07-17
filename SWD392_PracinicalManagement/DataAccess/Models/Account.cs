@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SWD392_PracinicalManagement.DataAccess.Models
+namespace SWD392_PracinicalManagement.Models
 {
     public partial class Account
     {
         public Account()
         {
             Doctors = new HashSet<Doctor>();
+            ExaminationForms = new HashSet<ExaminationForm>();
             MedicalRecords = new HashSet<MedicalRecord>();
         }
 
@@ -24,6 +25,7 @@ namespace SWD392_PracinicalManagement.DataAccess.Models
 
         public virtual Role? Role { get; set; }
         public virtual ICollection<Doctor> Doctors { get; set; }
+        public virtual ICollection<ExaminationForm> ExaminationForms { get; set; }
         public virtual ICollection<MedicalRecord> MedicalRecords { get; set; }
     }
 }
