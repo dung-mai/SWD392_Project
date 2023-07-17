@@ -65,6 +65,7 @@ namespace SWD392_PracinicalManagement.Models
 
                 entity.Property(e => e.Password)
                     .HasMaxLength(100)
+                    .IsUnicode(false)
                     .HasColumnName("password");
 
                 entity.Property(e => e.PhoneNumber)
@@ -211,12 +212,17 @@ namespace SWD392_PracinicalManagement.Models
                 entity.Property(e => e.DepartmentId).HasColumnName("departmentId");
 
                 entity.Property(e => e.Desctiption)
-                    .HasColumnType("text")
+                    .HasMaxLength(200)
                     .HasColumnName("desctiption");
 
                 entity.Property(e => e.PracinicalCategoryName)
                     .HasMaxLength(50)
                     .HasColumnName("pracinicalCategoryName");
+
+                entity.HasOne(d => d.CreatedByNavigation)
+                    .WithMany(p => p.PracinicalCategories)
+                    .HasForeignKey(d => d.CreatedBy)
+                    .HasConstraintName("FK_PracinicalCategory_Account");
 
                 entity.HasOne(d => d.Department)
                     .WithMany(p => p.PracinicalCategories)

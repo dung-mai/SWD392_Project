@@ -10,6 +10,7 @@ namespace SWD392_PracinicalManagement.Models
             Doctors = new HashSet<Doctor>();
             ExaminationForms = new HashSet<ExaminationForm>();
             MedicalRecords = new HashSet<MedicalRecord>();
+            PracinicalCategories = new HashSet<PracinicalCategory>();
         }
 
         public int AccountId { get; set; }
@@ -27,5 +28,6 @@ namespace SWD392_PracinicalManagement.Models
         public virtual ICollection<Doctor> Doctors { get; set; }
         public virtual ICollection<ExaminationForm> ExaminationForms { get; set; }
         public virtual ICollection<MedicalRecord> MedicalRecords { get; set; }
+        public virtual ICollection<PracinicalCategory> PracinicalCategories { get; set; }
     }
 }
