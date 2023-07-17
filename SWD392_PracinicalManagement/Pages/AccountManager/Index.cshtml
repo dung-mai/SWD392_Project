@@ -91,9 +91,9 @@
                         <figure class="text-lg-center">
                             <img src="~/img/default-avatar.jpg" class="img-lg my-3 rounded-circle" width="196" height="196" alt="User Photo" id="show-avatar">
                             <figcaption>
-                                <div class="btn btn-outline-primary" id="my-button" onclick="document.getElementById('my-file').click()">
+                                @*<div class="btn btn-outline-primary" id="my-button" onclick="document.getElementById('my-file').click()">
                                     <i class="fa-solid fa-cloud-arrow-up" style="color: blue"></i> Upload
-                                </div>
+                                </div>*@
                                 <input type="file" accept="image/*" name="avatar" id="my-file" style="display: none"
                                        onchange="document.getElementById('show-avatar').src = window.URL.createObjectURL(this.files[0])">
                             </figcaption>
