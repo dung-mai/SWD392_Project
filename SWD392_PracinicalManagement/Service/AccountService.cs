@@ -23,5 +23,18 @@ namespace SWD392_PracinicalManagement.Service
                 return _accountRepository.GetAccountByEmailPassword(email, password);
             }
         }
+
+        public bool UpdateAccountInfo(Account account)
+        {
+            if(String.IsNullOrEmpty(account.Address) || String.IsNullOrEmpty(account.PhoneNumber)
+                                                   || String.IsNullOrEmpty(account.Name)
+                                                   || String.IsNullOrEmpty(account.Gender)
+                                                   || String.IsNullOrEmpty(account.Dob?.ToString())) {
+                return false;
+            } else
+            {
+                return _accountRepository.UpdateAccountInfo(account);
+            }
+        }
     }
 }
