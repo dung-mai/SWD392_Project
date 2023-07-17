@@ -1,7 +1,9 @@
 ﻿@page
-@model SWD392_PracinicalManagement.Pages.PracinicalCategory.ManagerModel
+@model SWD392_PracinicalManagement.Pages.PracinicalCategory.AddModel
 @{
-    Layout = "_Layout";
+}
+@{
+	Layout = "_Layout";
 }
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -15,6 +17,7 @@
 		background: #f5f5f5;
 		font-family: 'Varela Round', sans-serif;
 		font-size: 15px;
+		overflow-x: hidden;
 	}
 
 	.table-responsive {
@@ -93,7 +96,7 @@
 	}
 
 	table.table th i {
-		font-size: 15px;
+		font-size: 20px;
 		margin: 0 5px;
 		cursor: pointer;
 	}
@@ -133,29 +136,28 @@
 <body>
 	<div class="container">
 		<div class="row">
+			<div class="col text-center">
+				<h1>Thêm danh mục khám lâm sàng</h1>
+			</div>
+		</div>
+		<div class="row">
 			<div class="col">
 				<div class="form-group p-3">
 					<label for="pracinicalCategoryId" class="col-sm-6 col-form-label">Mã danh mục:</label>
-					<input type="text" class="form-control-sm" placeholder="Pracinical CategoryId">
+					<input type="text" class="form-control">
 				</div>
 			</div>
 			<div class="col">
 				<div class="form-group p-3">
 					<label for="pracinicalCategoryName" class="col-sm-6 col-form-label">Tên danh mục:</label>
-					<input type="text" class="form-control-sm" placeholder="Last name">
+					<input type="text" class="form-control" name="pracinicalCategoryName">
 				</div>
 			</div>
 			<div class="w-100"></div>
 			<div class="col">
-				<div class="form-group p-3">
-					<label for="pracinicalCategoryName" class="col-sm-6 col-form-label">Mô tả:</label>
-					<textarea class="form-control-sm" id="description" rows="3"></textarea>
-				</div>
-			</div>
-			<div class="col">
 				<div class="col form-group p-3">
 					<label for="departmentId" class="col-sm-6 col-form-label">Chuyên khoa:</label>
-					<select class="form-select form-select-sm" id="departmentId">
+					<select class="form-control" name="department">
 						<option value="">Chọn chuyên khoa</option>
 						<option value="Smith">KHOA HUYẾT HỌC TRUYỀN MÁU</option>
 						<option value="Johnson">KHOA VI SINH VÀ LABO LAO CHUẨN QUỐC GIA</option>
@@ -164,6 +166,19 @@
 					</select>
 				</div>
 			</div>
+			<div class="col">
+				<div class="form-group p-3">
+					<label for="pracinicalCategoryName" class="col-sm-6 col-form-label">Mô tả:</label>
+					<textarea class="form-control" id="description" name="description" rows="3"></textarea>
+				</div>
+			</div>
+		</div>
+
+		<div class="row mt-3">
+			<div class="col">
+				<button style="margin-left: 10px;"  class="btn btn-primary" type="button">Thêm</button>
+				<button style="margin-left: 10px;" class="btn btn-info" type="button">Import</button>
+			</div>
 		</div>
 
 		<div class="table-responsive">
@@ -171,19 +186,19 @@
 				<div class="table-title">
 					<div class="row">
 						<div class="col-xs-6">
-							<h2>Quản lý danh mục cận lâm sàng</h2>
+							<h2>Danh sách danh mục cận lâm sàng</h2>
 						</div>
 					</div>
 				</div>
-				<table class="table table-striped table-hover">
+				<table class="table table-striped">
 					<thead>
 						<tr>
-							<th>Mã danh mục</th>
-							<th>Tên</th>
-							<th>Chuyên khoa</th>
-							<th>Mô tả</th>
-							<th>Ngày tạo</th>
-							<th>Người tạo</th>
+							<th class="h2">Mã danh mục</th>
+							<th class="h2">Tên</th>
+							<th class="h2">Chuyên khoa</th>
+							<th class="h2">Mô tả</th>
+							<th class="h2">Ngày tạo</th>
+							<th class="h2">Người tạo</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -195,11 +210,11 @@
 							<td>22/11/2002</td>
 							<td>Ngô Minh Tiến</td>
 							<td>
-								<a href="" class="edit" ><i class="material-icons"title="Edit">&#xE254;</i></a>
-								<a href="l" class="delete" ><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+								<a href="" class="edit"><i class="material-icons" title="Edit">&#xE254;</i></a>
+								<a href="" class="delete"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 							</td>
 						</tr>
-						
+
 					</tbody>
 				</table>
 			</div>

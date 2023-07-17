@@ -4,5 +4,6 @@ namespace SWD392_PracinicalManagement.Repository
 {
     public class PracinicalCategoryRepository : IPracinicalCategoryRepository
     {
+
     }
 }
