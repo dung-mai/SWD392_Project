@@ -5,5 +5,6 @@ namespace SWD392_PracinicalManagement.IService
     public interface IAccountService
     {
         Account? CheckLoginAccount(string? email, string? password);
+        bool UpdateAccountInfo(Account account);
     }
 }
