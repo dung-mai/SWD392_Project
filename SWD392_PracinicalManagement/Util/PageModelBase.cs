@@ -8,16 +8,16 @@ namespace SWD392_PracinicalManagement.Util
     public class PageModelBase : PageModel
     {
         public Account? LoggedInAccount { get; set; }
-        private string[] authorizedRoles = new string[]{ };
+        public string[] authorizedRoles = new string[]{ };
 
-        public PageModelBase() 
-        { 
+        public PageModelBase()
+        {
         
         }
 
         private IActionResult DefaultPageByRole(Account account)
         {
-            if (account.Role?.RoleName?.ToLower() == "patient")
+            if (account.Role?.RoleName?.ToLower() == Constant.PATIENT_ROLE)
             {
                 return RedirectToPage(Constant.DEFAULT_PATIENT_PAGE);
             }
@@ -27,27 +27,41 @@ namespace SWD392_PracinicalManagement.Util
             }
         }
 
-        private IActionResult CheckHasLogin()
+        public bool HasAuthorized()
         {
-            Account? account = HttpContext.Session.Get<Account>("loggedInAccount");
+            LoggedInAccount = HttpContext.Session.Get<Account>(Constant.LOGIN_ACCOUNT_SESSION_NAME);
 
-            if (account is null)
+            //NOT LOGIN + GUEST can acess --> true
+            if (LoggedInAccount is null) 
             {
-                if (IsGuestFeature()) // if guest can access
+                if (IsGuestFeature()) 
                 {
-                    return Page();
-                } else // need login
-                {
-                    return RedirectToPage("/Login");
+                    return true;
                 }
+            }
+            //HAS LOGIN + check role
+            else
+            {
+                foreach (string r in authorizedRoles)
+                {
+                    if (r == LoggedInAccount?.Role?.RoleName)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        public IActionResult LoginBasedFeatureRedirect()
+        {
+            if (LoggedInAccount is null)
+            {
+                return RedirectToPage("/Login");
             }
             else
             {
-                if (HasAuthorized(account.Role.RoleName))
-                {
-
-                }
-                return DefaultPageByRole(account);
+                return DefaultPageByRole(LoggedInAccount);
             }
         }
 
@@ -55,19 +69,7 @@ namespace SWD392_PracinicalManagement.Util
         {
             foreach(string role in authorizedRoles)
             {
-                if(role == "guest")
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        private bool HasAuthorized(string _role)
-        {
-            foreach (string r in authorizedRoles)
-            {
-                if (r == _role)
+                if(role == Constant.GUEST)
                 {
                     return true;
                 }
