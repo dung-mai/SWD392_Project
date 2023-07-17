@@ -27,6 +27,21 @@ namespace SWD392_PracinicalManagement.Pages.ExamFormPage
             return Page();
         }
 
+        public void OnPostFilterDoctor(int? doctor)
+        {
+            examFormList = service.GetExaminationFormByDoctorId((int)doctor);
+        }
+
+        public void OnPostFilterPatient(int? patient)
+        {
+            examFormList = service.GetExaminationFormByPatientId((int)patient);
+        }
+
+        public void OnPostFilterDate(DateTime? date)
+        {
+            examFormList = service.GetExaminationFormByDate((DateTime)date);
+        }
+
         private void LoadData()
         {
             examFormList = service.GetExaminationForms();
