@@ -1,0 +1,19 @@
+﻿@page "/Patient/ExaminationDetail/{id}/{name}"
+@model SWD392_PracinicalManagement.Pages.Patient.TestResultModel
+@{
+    Layout = "_Layout";
+}
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<head>
+    <link href="~/css/style.css" rel="stylesheet">
+</head>
+
+
+@foreach (Models.ExaminationResult p in Model.listResult)
+{
+    <h3>Result of @Model.testName test</h3>
+    <div class="item-wrap">
+        <p>Description: </p>
+        <p>Final Result: </p>
+    </div>
+}

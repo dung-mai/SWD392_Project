@@ -1,0 +1,21 @@
+﻿@page "/Patient/ExaminationDetail/{id}"
+@model SWD392_PracinicalManagement.Pages.Patient.ExaminationDetailModel
+@{
+    Layout = "_Layout";
+}
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<head>
+    <link href="~/css/style.css" rel="stylesheet">
+</head>
+
+<h1 class="mb-10 ms-10">Examination at @Model.examAt</h1>
+@foreach (string p in @Model.tests)
+{
+    <div class="item-wrap">
+        <div class="item">
+            <a asp-page="/Patient/TestResult" asp-route-id="@p" asp-route-name="@Model.examAt">@p</a>
+        </div>
+    </div>
+}
+
+

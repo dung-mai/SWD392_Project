@@ -1,0 +1,19 @@
+﻿@page
+@model SWD392_PracinicalManagement.Pages.Patient.MedicalRecordModel
+@{
+    Layout = "_Layout";
+}
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<head>
+    <link href="~/css/style.css" rel="stylesheet">
+</head>
+
+<h1 class="mb-10 ms-10">Hồ sơ bệnh án</h1>
+@foreach (DateTime p in Model.dates)
+{
+    <div class="item-wrap">
+        <div class="item">
+            <a asp-page="/Patient/ExaminationDetail" asp-route-id="@p">Examinations at: @p</a>
+        </div>
+    </div>
+}

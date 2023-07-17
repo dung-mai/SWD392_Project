@@ -102,7 +102,8 @@
                                 </button>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" asp-page="/AccountManager/Index">Thông tin cá nhân</a>
-                                    <a class="dropdown-item" href="${context}/loadCustomerAppointment">Lịch sử khám bệnh</a>
+                                    @*<a class="dropdown-item" href="${context}/loadCustomerAppointment">Lịch sử khám bệnh</a>*@
+                                    <a class="dropdown-item" asp-page="/Patient/MedicalRecord">Hồ sơ bệnh án</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" asp-page="/Logout">Đăng xuất</a>
                                 </div>
