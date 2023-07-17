@@ -1,0 +1,154 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - SWD392_PracinicalManagement</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/SWD392_PracinicalManagement.styles.css" asp-append-version="true" />
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+</head>
+<body>
+    @*    <header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <div class="container">
+    <a class="navbar-brand" asp-area="" asp-page="/Index">SWD392_PracinicalManagement</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+    <ul class="navbar-nav flex-grow-1">
+    <li class="nav-item">
+    <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+    </li>
+    <li class="nav-item">
+    <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
+    </li>
+    </ul>
+    <partial name="_LoginPartial" />
+    </div>
+    </div>
+    </nav>
+    </header>*@
+
+    <div class="container-fluid py-2 border-bottom d-none d-lg-block">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6  text-lg-start mb-2 mb-lg-0">
+                    <div class="d-inline-flex align-items-center">
+                        <a class="text-decoration-none text-body pe-3" href="">
+                            <i class="bi bi-telephone me-2"></i>
+                            024 7300 1866
+                        </a>
+                        <span class="text-body">|</span>
+                        <a class="text-decoration-none text-body px-3" href="">
+                            <i class="bi bi-envelope me-2"></i>daihocfpt@fpt.edu.vn
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6 text-center text-lg-end">
+                    <div class="d-inline-flex align-items-center">
+                        <a class="text-body px-2" href="https://www.facebook.com/DaihocFPTHaNoi">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a class="text-body px-2" href="https://www.linkedin.com/school/fpt-university/">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a class="text-body px-2" href="https://www.instagram.com/fpt_university/">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a class="text-body ps-2" href="https://www.youtube.com/channel/UCLfZhl8uJXAK2wtA4_IbEMA">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Topbar End -->
+
+    <style>
+        #navbarCollapse a {
+            color: #1b3250;
+        }
+    </style>
+
+    <!-- Navbar Start -->
+    <div class="container-fluid sticky-top bg-white shadow-sm">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0">
+                <a href="loadHomePage" class="navbar-brand">
+                    <h1 class="m-0 text-uppercase fs-2 my-2">
+                        <i class="fa fa-clinic-medical me-2"></i>Hệ thống cận lâm sàng
+                    </h1>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse " id="navbarCollapse">
+                    <div class="navbar-nav ms-auto py-0 align-items-center">
+                        <a href="${context}/loadHomePage" class="nav-item nav-link fs-6 fw-bold ">Trang chủ</a>
+                        <a href="${context}/userProfile" class="nav-item nav-link fs-6 fw-bold">Lịch sử khám</a>
+                        <a href="${context}/loadDoctor" class="nav-item nav-link fs-6 fw-bold">Bác sĩ</a>
+                        <a href="login" class="nav-item active nav-link fs-6 fw-bold">Đăng nhập</a>
+
+                        @*<c:if test="${sessionScope.UserLogined != null}">
+
+                        <!--<span class="">${sessionScope.UserLogined.name}</span>-->
+                        <div class="btn-group">
+                        <button type="img" class="btn btn-infor pe-0"> <img
+                        src="${context}/img/${sessionScope.UserLogined.avatar != null ? sessionScope.UserLogined.avatar : 'default-avatar.jpg'}"
+                        class="rounded-circle" width="45" height="45" alt="Avatar"
+                        loading="lazy" /></button>
+                        <button type="button" class="btn btn-infor btn-sm dropdown-toggle fs-5"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+
+                        <div class="dropdown-menu">
+                        <a class="dropdown-item" href="${context}/userProfile">Thông tin cá nhân</a>
+                        <a class="dropdown-item" href="${context}/loadChildren">Hồ sơ của trẻ</a>
+                        <a class="dropdown-item" href="${context}/loadCustomerAppointment">Lịch sử đặt khám</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="${context}/logout">Đăng xuất</a>
+                        </div>
+                        </div>
+                        </c:if>*@
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - SWD392_PracinicalManagement - <a asp-area="" asp-page="/Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
