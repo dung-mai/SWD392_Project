@@ -1,0 +1,241 @@
+﻿@page
+@model SWD392_PracinicalManagement.Pages.PracinicalCategories.AddModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+}
+@{
+	Layout = "_Layout";
+}
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style>
+	body {
+		color: #566787;
+		background: #f5f5f5;
+		font-family: 'Varela Round', sans-serif;
+		font-size: 15px;
+		overflow-x: hidden;
+	}
+
+	.table-responsive {
+		margin: 30px 0;
+	}
+
+	.table-wrapper {
+		min-width: 1000px;
+		background: #fff;
+		padding: 20px 25px;
+		border-radius: 3px;
+		box-shadow: 0 1px 1px rgba(0,0,0,.05);
+	}
+
+	.table-title {
+		padding-bottom: 15px;
+		background: #435d7d;
+		color: #fff;
+		padding: 16px 30px;
+		margin: -20px -25px 10px;
+		border-radius: 3px 3px 0 0;
+	}
+
+		.table-title h2 {
+			margin: 5px 0 0;
+			font-size: 24px;
+		}
+
+		.table-title .btn-group {
+			float: right;
+		}
+
+		.table-title .btn {
+			color: #fff;
+			float: right;
+			font-size: 15px;
+			border: none;
+			min-width: 50px;
+			border-radius: 2px;
+			border: none;
+			outline: none !important;
+			margin-left: 10px;
+		}
+
+			.table-title .btn i {
+				float: left;
+				font-size: 21px;
+				margin-right: 5px;
+			}
+
+			.table-title .btn span {
+				float: left;
+				margin-top: 2px;
+			}
+
+	table.table tr th, table.table tr td {
+		border-color: #e9e9e9;
+		padding: 12px 15px;
+		vertical-align: middle;
+	}
+
+		table.table tr th:first-child {
+			width: 60px;
+		}
+
+		table.table tr th:last-child {
+			width: 100px;
+		}
+
+	table.table-striped tbody tr:nth-of-type(odd) {
+		background-color: #fcfcfc;
+	}
+
+	table.table-striped.table-hover tbody tr:hover {
+		background: #f5f5f5;
+	}
+
+	table.table th i {
+		font-size: 20px;
+		margin: 0 5px;
+		cursor: pointer;
+	}
+
+	table.table td:last-child i {
+		opacity: 0.9;
+		font-size: 22px;
+		margin: 0 5px;
+	}
+
+	table.table td a {
+		font-weight: bold;
+		color: #566787;
+		display: inline-block;
+		text-decoration: none;
+		outline: none !important;
+	}
+
+		table.table td a:hover {
+			color: #2196F3;
+		}
+
+		table.table td a.edit {
+			color: #FFC107;
+		}
+
+		table.table td a.delete {
+			color: #F44336;
+		}
+
+	.hint-text {
+		float: left;
+		margin-top: 10px;
+		font-size: 15px;
+	}
+</style>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col text-center">
+				<h1>Thêm danh mục khám lâm sàng</h1>
+			</div>
+		</div>
+		<form method="post">
+		<div class="row">
+			<div class="col">
+				<div class="form-group p-3">
+					<label for="pracinicalCategoryId" class="col-sm-6 col-form-label">Mã danh mục:</label>
+					<input type="text" class="form-control" readonly>
+				</div>
+			</div>
+			<div class="col">
+				<div class="form-group p-3">
+					<label for="pracinicalCategoryName" class="col-sm-6 col-form-label">Tên danh mục:</label>
+					<input type="text" class="form-control" name="pracinicalCategoryName">
+				</div>
+			</div>
+			<div class="w-100"></div>
+			<div class="col">
+				<div class="col form-group p-3">
+					<label for="departmentId" class="col-sm-6 col-form-label">Chuyên khoa:</label>
+					<select class="form-control" name="department">
+						<option value="">Chọn chuyên khoa</option>
+						@foreach (var department in Model.departments)
+						{
+							<option value="@department.DepartmentId">@department.DepartmentName</option>
+						}
+					</select>
+				</div>
+			</div>
+			<div class="col">
+				<div class="form-group p-3">
+					<label for="pracinicalCategoryName" class="col-sm-6 col-form-label">Mô tả:</label>
+					<textarea class="form-control" id="description" name="description" rows="3"></textarea>
+				</div>
+			</div>
+		</div>
+
+		<div class="row mt-3">
+					<div class="col-1">
+						<button style="margin-left: 10px;" class="btn btn-primary" type="submit">Thêm</button>
+					</div>
+					
+		</div>
+		</form>
+		<form method="POST" asp-page-handler="ImportFile" id="importFile" enctype="multipart/form-data">
+		<div class="row mt-3">
+		
+		  
+		<div class="col-2 mt-2 mx-3">
+			<input type="file" name="file" id="file" />
+		</div>
+		<div class="col-2">
+			<button style="margin-left: 10px;" form="importFile" class="btn btn-info" type="submit">Import</button>
+		</div>
+		</div>
+		</form>
+
+		<div class="table-responsive">
+			<div class="table-wrapper">
+				<div class="table-title">
+					<div class="row">
+						<div class="col-xs-6">
+							<h2>Danh sách danh mục cận lâm sàng</h2>
+						</div>
+					</div>
+				</div>
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th class="h2">Mã danh mục</th>
+							<th class="h2">Tên</th>
+							<th class="h2">Chuyên khoa</th>
+							<th class="h2">Mô tả</th>
+							<th class="h2">Ngày tạo</th>
+							<th class="h2">Người tạo</th>
+							<th class="h2">Hành động</th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach (var category in Model.pracinicalCategories)
+						{
+							<tr>
+								<td>@category.PracinicalCategoryId</td>
+								<td>@category.PracinicalCategoryName</td>
+								<td>@category.Department.DepartmentName</td>
+								<td>@category.Desctiption</td>
+								<td>@category.CreatedDate?.ToString("dd/MM/yyyy")</td>
+								<td>@category.CreatedByNavigation.Name</td>
+								<td>
+									<a href="/PracinicalCategories/Update?id=@category.PracinicalCategoryId" class="edit"><i class="material-icons" title="Edit">&#xE254;</i></a>
+									<a href="/PracinicalCategories/Delete?id=@category.PracinicalCategoryId" class="delete"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+								</td>
+							</tr>
+						}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
