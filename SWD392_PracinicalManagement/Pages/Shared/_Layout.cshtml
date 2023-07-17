@@ -6,6 +6,7 @@
     <title>@ViewData["Title"] - SWD392_PracinicalManagement</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/SWD392_PracinicalManagement.styles.css" asp-append-version="true" />
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
@@ -20,29 +21,6 @@
 
 </head>
 <body>
-    @*    <header>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-    <div class="container">
-    <a class="navbar-brand" asp-area="" asp-page="/Index">SWD392_PracinicalManagement</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-    aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-    <ul class="navbar-nav flex-grow-1">
-    <li class="nav-item">
-    <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
-    </li>
-    <li class="nav-item">
-    <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-    </li>
-    </ul>
-    <partial name="_LoginPartial" />
-    </div>
-    </div>
-    </nav>
-    </header>*@
-
     <div class="container-fluid py-2 border-bottom d-none d-lg-block">
         <div class="container">
             <div class="row">
@@ -102,6 +80,7 @@
                     <div class="navbar-nav ms-auto py-0 align-items-center">
                         <a asp-page="/Index" class="nav-item nav-link fs-6 fw-bold ">Trang chủ</a>
                         <a href="" class="nav-item nav-link fs-6 fw-bold">Lịch sử khám</a>
+                        <a href="/ExamFormPage/ExaminationFormList" class="nav-item nav-link fs-6 fw-bold">Phiếu khám</a>
                         <a href="" class="nav-item nav-link fs-6 fw-bold">Bác sĩ</a>
 
                         @if (Model.LoggedInAccount == null)
@@ -122,7 +101,7 @@
                                     <span class="sr-only">Toggle Dropdown</span>
                                 </button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="${context}/userProfile">Thông tin cá nhân</a>
+                                    <a class="dropdown-item" asp-page="/AccountManager/Index">Thông tin cá nhân</a>
                                     <a class="dropdown-item" href="${context}/loadCustomerAppointment">Lịch sử khám bệnh</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" asp-page="/Logout">Đăng xuất</a>

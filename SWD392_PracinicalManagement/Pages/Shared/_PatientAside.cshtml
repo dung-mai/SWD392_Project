@@ -1,0 +1,81 @@
+﻿
+<style>
+    .left-aside .text {
+        font-family: poppins, sans-serif;
+        color: #676b84;
+        font-size: 17px;
+        font-weight: 500;
+    }
+
+
+    .menu-aside {
+        background: #f3f3f3;
+    }
+
+    .menu-item {
+        margin-left: 10px;
+        width: 100%;
+        justify-content: start;
+    }
+
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        border: 1px solid #e7e7e7;
+        background-color: #f3f3f3;
+    }
+
+    li {
+        float: left;
+    }
+
+        li a {
+            display: block;
+            color: #666;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+            li a:hover:not(.active) {
+                background-color: #ddd;
+            }
+
+            li a.active {
+                color: white;
+                background-color: #04AA6D;
+            }
+
+    .menu-item a.active {
+        background-color: #ddd;
+    }
+</style>
+
+<nav class="left-aside bg-white col-sm-4 bg-light text-white mx-auto p-5 align-items-center">
+    <div class="aside-body p-3">
+        <ul class="menu-aside menu">
+            <li class="menu-item"> 
+                <a class="menu-link @(Model.PageContext.RouteData.Values["page"].ToString() == "/AccountManager/Index" ? "active" : "")"
+                   href="${pageContext.request.contextPath}/userProfile">
+                    <img src="~/img/users.svg">
+                    <span class="text ms-4">Thông tin cá nhân</span>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a class="menu-link ${pageContext.request.servletPath == '/Views/Customers/loadCustomerAppointment.jsp'? 'active': ''}"
+                   href="${pageContext.request.contextPath}/loadCustomerAppointment">
+                    <img src="~/img/calendar.svg">
+                    <span class="text ms-4">Lịch sử khám bệnh</span>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a class="menu-link ${pageContext.request.servletPath == '/Views/Customers/loadChildrenProfile.jsp'? 'active': ''}"
+                   href="">
+                    <img src="~/img/smile_gray.svg">
+                    <span class="text ms-4">Trạng thái thanh toán</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
