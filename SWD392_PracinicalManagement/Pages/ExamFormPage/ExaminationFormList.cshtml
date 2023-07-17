@@ -1,0 +1,35 @@
+﻿@page
+@model SWD392_PracinicalManagement.Pages.ExamFormPage.ExaminationFormListModel
+@using SWD392_PracinicalManagement.Models;
+@{
+    Layout = "_Layout";
+}
+
+<div padding-bottom="10px">
+    <h1>Q2 - List of Products</h1>
+</div>
+<div>
+    <a href="/Products/Cart"></a>
+    <table>
+        <thead>
+        <th>Id</th>
+        <th>Doctor</th>
+        <th>Patient</th>
+        <th>MeetingDate</th>
+        <th>Note</th>
+        </thead>
+        <tbody>
+            @foreach (ExaminationForm ex in Model.examFormList)
+            {
+                <tr>
+                    <td>@ex.ExaminationFormId</td>
+                    <td>@ex.DoctorCodeNavigation.Account.Name</td>
+                    <td>@ex.Patient.Name</td>
+                    <td>@ex.MeetingDate</td>
+                    <td>@ex.Note</td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>
