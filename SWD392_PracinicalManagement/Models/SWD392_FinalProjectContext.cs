@@ -64,7 +64,7 @@ namespace SWD392_PracinicalManagement.Models
                     .HasColumnName("name");
 
                 entity.Property(e => e.Password)
-                    .HasColumnType("text")
+                    .HasMaxLength(100)
                     .HasColumnName("password");
 
                 entity.Property(e => e.PhoneNumber)
