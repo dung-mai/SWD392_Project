@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using SWD392_PracinicalManagement.DataAccess.Models;
+using SWD392_PracinicalManagement.Models;
 using SWD392_PracinicalManagement.IRepository;
 using SWD392_PracinicalManagement.IService;
 using SWD392_PracinicalManagement.Repository;
