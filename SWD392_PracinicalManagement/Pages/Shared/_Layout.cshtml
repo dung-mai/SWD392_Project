@@ -100,32 +100,38 @@
                 </button>
                 <div class="collapse navbar-collapse " id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0 align-items-center">
-                        <a href="${context}/loadHomePage" class="nav-item nav-link fs-6 fw-bold ">Trang chủ</a>
-                        <a href="${context}/userProfile" class="nav-item nav-link fs-6 fw-bold">Lịch sử khám</a>
-                        <a href="${context}/loadDoctor" class="nav-item nav-link fs-6 fw-bold">Bác sĩ</a>
-                        <a href="login" class="nav-item active nav-link fs-6 fw-bold">Đăng nhập</a>
+                        <a asp-page="/Index" class="nav-item nav-link fs-6 fw-bold ">Trang chủ</a>
+                        <a href="" class="nav-item nav-link fs-6 fw-bold">Lịch sử khám</a>
+                        <a href="" class="nav-item nav-link fs-6 fw-bold">Bác sĩ</a>
 
+                        @if (Model.LoggedInAccount == null)
+                        {
+                            <a asp-page="/Login" class="nav-item active nav-link fs-6 fw-bold">Đăng nhập</a>
+                        }
+                        else
+                        {
+                            <span class="@Model.LoggedInAccount.Name"></span>
+                            <div class="btn-group">
+                                <button class="btn btn-infor pe-0">
+                                    <img src="~/img/default-avatar.jpg"
+                                         class="rounded-circle" width="45" height="45" alt="Avatar"
+                                         loading="lazy" />
+                                </button>
+                                <button type="button" class="btn btn-infor btn-sm dropdown-toggle fs-5"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="${context}/userProfile">Thông tin cá nhân</a>
+                                    <a class="dropdown-item" href="${context}/loadCustomerAppointment">Lịch sử khám bệnh</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" asp-page="/Logout">Đăng xuất</a>
+                                </div>
+                            </div>
+                        }
                         @*<c:if test="${sessionScope.UserLogined != null}">
 
-                        <!--<span class="">${sessionScope.UserLogined.name}</span>-->
-                        <div class="btn-group">
-                        <button type="img" class="btn btn-infor pe-0"> <img
-                        src="${context}/img/${sessionScope.UserLogined.avatar != null ? sessionScope.UserLogined.avatar : 'default-avatar.jpg'}"
-                        class="rounded-circle" width="45" height="45" alt="Avatar"
-                        loading="lazy" /></button>
-                        <button type="button" class="btn btn-infor btn-sm dropdown-toggle fs-5"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        <span class="sr-only">Toggle Dropdown</span>
-                        </button>
-
-                        <div class="dropdown-menu">
-                        <a class="dropdown-item" href="${context}/userProfile">Thông tin cá nhân</a>
-                        <a class="dropdown-item" href="${context}/loadChildren">Hồ sơ của trẻ</a>
-                        <a class="dropdown-item" href="${context}/loadCustomerAppointment">Lịch sử đặt khám</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="${context}/logout">Đăng xuất</a>
-                        </div>
-                        </div>
+                        
                         </c:if>*@
                     </div>
                 </div>

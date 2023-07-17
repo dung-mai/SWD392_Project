@@ -2,7 +2,7 @@
 
 namespace SWD392_PracinicalManagement.Repository
 {
-    public class DepartmentRepository: IDepartmentRepository
+    public class ExaminationFormRepository: IExaminationFormRepository
     {
     }
 }
