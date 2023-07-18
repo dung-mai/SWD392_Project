@@ -57,14 +57,14 @@
         <ul class="menu-aside menu">
             <li class="menu-item"> 
                 <a class="menu-link @(Model.PageContext.RouteData.Values["page"].ToString() == "/AccountManager/Index" ? "active" : "")"
-                   href="${pageContext.request.contextPath}/userProfile">
+                   asp-page="/AccountManager/Index">
                     <img src="~/img/users.svg">
                     <span class="text ms-4">Thông tin cá nhân</span>
                 </a>
             </li>
             <li class="menu-item">
-                <a class="menu-link ${pageContext.request.servletPath == '/Views/Customers/loadCustomerAppointment.jsp'? 'active': ''}"
-                   href="${pageContext.request.contextPath}/loadCustomerAppointment">
+                <a class="menu-link @(Model.PageContext.RouteData.Values["page"].ToString() == "/Patient/MedicalRecord" ? "active" : "")"
+                   asp-page="/Patient/MedicalRecord">
                     <img src="~/img/calendar.svg">
                     <span class="text ms-4">Lịch sử khám bệnh</span>
                 </a>

@@ -64,3 +64,56 @@ else
 {
     <h4 class="text-danger text-center">@Model.ErrorMessage</h4>
 }
+
+<div class="container-fluid">
+    <div class="row m-5">
+        <table class="table table-bordered table-responsive-md table-danger">
+            <tr>
+                <td class="fw-bold">Hồ sơ bệnh án số: </td>
+                <td>1000000</td>
+            </tr>
+            <tr>
+                <td class="fw-bold">Tên bệnh nhân: </td>
+                <td>Hà Ngọc Hiếu</td>
+            </tr>
+            <tr>
+                <td class="fw-bold">Giới tính</td>
+                <td>Nam</td>
+            </tr>
+            <tr>
+                <td class="fw-bold">Ngày sinh</td>
+                <td>03/01/2002</td>
+            </tr>
+            <tr>
+                <td class="fw-bold">Địa chỉ</td>
+                <td>Thanh Hóa</td>
+            </tr>
+            <tr>
+                <td class="fw-bold">Kết quả khám</td>
+                <td>
+                    <div>
+                        <ul>
+                            <li>
+                                <p>17/07/2023</p>
+                                <p>Kết quả xét nghiệm <a class="btn btn-danger ms-3" href="/ExaminationResult/Detail/">Xem chi tiết</a> </p>
+                            </li>
+                            <li>
+                                <p>02/05/2023</p>
+                                <p>Kết quả xét nghiệm <a class="btn btn-danger ms-3" href="/ExaminationResult/Detail/">Xem chi tiết</a> </p>
+                            </li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+            <tr id="importFilePreview"></tr>
+            <tr>
+                <td class="fw-bold">Ghi chú: </td>
+                <td>Bệnh nhân có tiền sử dị ứng hải sản</td>
+            </tr>
+            <tr>
+            <td class="text-center" colspan="2">
+                <a class="btn btn-outline-danger me-3" href="/Home">Back</a>
+            </td>
+        </table>
+    </div>
+</div>

@@ -148,9 +148,15 @@ namespace SWD392_PracinicalManagement.Models
 
                 entity.Property(e => e.ResultId).HasColumnName("resultId");
 
+                entity.Property(e => e.AttachmentFile).HasColumnName("attachmentFile");
+
                 entity.Property(e => e.CreatedAt)
                     .HasColumnType("datetime")
                     .HasColumnName("created_at");
+
+                entity.Property(e => e.Description)
+                    .HasColumnType("text")
+                    .HasColumnName("description");
 
                 entity.Property(e => e.DoctorId).HasColumnName("doctorId");
 
