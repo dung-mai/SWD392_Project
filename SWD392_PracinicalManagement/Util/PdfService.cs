@@ -18,23 +18,43 @@ namespace SWD392_PracinicalManagement.Util
 
                 // Mở tài liệu và thêm nội dung
                 pdfDoc.Open();
-                PdfPTable table = new PdfPTable(6) { WidthPercentage = 100 };
+
+                // Tạo font cho PDF
+                BaseFont bf = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
+                Font font = new Font(bf, 12);
+                Font headerFont = new Font(bf, 16, Font.BOLD);
+
+                // Tạo tiêu đề
+                Paragraph header = new Paragraph("Examination Result", headerFont);
+                header.Alignment = Element.ALIGN_CENTER;
+                pdfDoc.Add(header);
+
+                PdfPTable table = new PdfPTable(2) { WidthPercentage = 100 };
 
                 // Thêm tiêu đề cho các cột
                 table.AddCell("Result ID");
+                table.AddCell(result.ResultId.ToString());
+
                 table.AddCell("Medical Record");
-                table.AddCell("Doctor ID");
-                table.AddCell("Service ID");
+                table.AddCell(result.MedicalRecord.ToString());
+
+                table.AddCell("Doctor Name");
+                table.AddCell(result.Doctor.Account.Name.ToString());
+
+                table.AddCell("Service Name");
+                table.AddCell(result.Service.ServiceName.ToString());
+
+                table.AddCell("Description");
+                table.AddCell(result?.Description?.ToString());
+
                 table.AddCell("Created At");
+                table.AddCell(result.CreatedAt?.ToString("yyyy-MM-dd") ?? "");
+
                 table.AddCell("Modified At");
+                table.AddCell(result.ModifiedAt?.ToString("yyyy-MM-dd") ?? "");
+
 
                 // Thêm dữ liệu vào bảng
-                table.AddCell(result.ResultId.ToString());
-                table.AddCell(result.MedicalRecord.ToString());
-                table.AddCell(result.DoctorId.ToString());
-                table.AddCell(result.ServiceId.ToString());
-                table.AddCell(result.CreatedAt?.ToString("yyyy-MM-dd") ?? "");
-                table.AddCell(result.ModifiedAt?.ToString("yyyy-MM-dd") ?? "");
 
 
                 pdfDoc.Add(table);

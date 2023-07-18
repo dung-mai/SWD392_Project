@@ -1,4 +1,64 @@
 ﻿@page
 @model SWD392_PracinicalManagement.Pages.ExaminationResult.ExportModel
+
 @{
+    Layout = "_Layout";
 }
+<h1 class="text-center m-3">Hồ sơ bệnh án</h1>
+<div class="container-fluid">
+    <div class="row m-5">
+        <table class="table table-bordered table-responsive-md table-danger">
+            <input hidden name="resultID" value="1" />
+            <tr>
+                <td class="fw-bold">Ngày tạo:</td>
+                @* <input name="ErTmp.CreatedAt" value="@Model.Er.CreatedAt"/> *@
+            </tr>
+            <tr>
+                <td class="fw-bold">Hồ sơ bệnh án số: </td>
+                @* <input name="ErTmp.MedicalRecord" value="@Model.Er.MedicalRecord"/> *@
+            </tr>
+            <tr>
+                <td class="fw-bold">Tên bệnh nhân: </td>
+                @* <input name="ErTmp.MedicalRecordNavigation.Patient.Name" value="@Model.Er.MedicalRecordNavigation.Patient.Name"/> *@
+            </tr>
+            <tr>
+                <td class="fw-bold">Giới tính</td>
+                @* <input name="ErTmp.MedicalRecordNavigation.Patient.Gender" value="@Model.Er.MedicalRecordNavigation.Patient.Gender"/> *@
+            </tr>
+            <tr>
+                <td class="fw-bold">Ngày sinh</td>
+                @* <input name="ErTmp.MedicalRecordNavigation.Patient.Dob" value="@Model.Er.MedicalRecordNavigation.Patient.Dob"/> *@
+            </tr>
+            <tr>
+                <td class="fw-bold">Địa chỉ</td>
+                @* <input name="ErTmp.MedicalRecordNavigation.Patient.Address" value="@Model.Er.MedicalRecordNavigation.Patient.Address"/> *@
+            </tr>
+            <tr>
+                <td class="fw-bold">Bác sĩ thực hiện:</td>
+                @* <input name="ErTmp.Doctor.Account.Name" value="@Model.Er.Doctor.Account.Name"/> *@
+            </tr>
+            <tr>
+                <td class="fw-bold">Chỉ định thực hiện: </td>
+                @* <input name="ErTmp.Service.ServiceName" value="@Model.Er.Service.ServiceName"/> *@
+            </tr>
+            <tr id="pdf-upload-row">
+                <td class="fw-bold">Kết quả khám</td>
+                <td>
+                    <div>
+                        <input id="pdf-upload" type="file" name="AttachmentFile" />
+                        <button class="btn btn-danger">Import</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="fw-bold">Chẩn đoán: </td>
+                @* <input name="ErTmp.Description" value="@Model.Er.Description"/> *@
+            </tr>
+            <tr>
+                <td class="text-center" colspan="2">
+                    <a class="btn btn-outline-danger me-3" type="button" value="Back"></a>
+                    <input class="btn btn-primary me-3" type="submit" value="Save">
+                </td>
+        </table>
+    </div>
+</div>

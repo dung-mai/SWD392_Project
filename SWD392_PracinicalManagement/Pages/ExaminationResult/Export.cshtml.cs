@@ -19,13 +19,22 @@ namespace SWD392_PracinicalManagement.Pages.ExaminationResult
         //{
         //}
 
-        public async Task<IActionResult> OnGet()
+        public async Task<IActionResult> OnGet(int? resultId)
         {
-            int resultId = 6;
-            
-            byte[] pdfData = _examinationResultService.ExportToPdf(resultId);
-            // Trả về file PDF để người dùng tải về
-            return File(pdfData, "application/pdf", "Results.pdf");
+            if (!HasAuthorized())
+            {
+                return LoginBasedFeatureRedirect();
+            }
+
+            if(resultId == null || resultId == 0)
+            {
+                return null;
+            } else
+            {
+                byte[] pdfData = _examinationResultService.ExportToPdf((int)resultId);
+                // Trả về file PDF để người dùng tải về
+                return pdfData == null ? null :  File(pdfData, "application/pdf", "Results.pdf");
+            }
         }
     }
 }
