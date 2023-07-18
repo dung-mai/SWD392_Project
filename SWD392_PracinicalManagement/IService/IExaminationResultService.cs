@@ -2,5 +2,6 @@
 {
     public interface IExaminationResultService
     {
+        byte[] ExportToPdf(int resultId);
     }
 }
