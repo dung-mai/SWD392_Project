@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using SWD392_PracinicalManagement.DataAccess.Models;
+using SWD392_PracinicalManagement.Models;
 
 namespace SWD392_PracinicalManagement.Pages.MedicalRecord
 {
     public class Index : PageModel
     {
         private SWD392_FinalProjectContext _context;
-        public List<DataAccess.Models.MedicalRecord> MedicalRecords;
+        public List<Models.MedicalRecord> MedicalRecords;
         public string ErrorMessage = "";
 
         public Index(SWD392_FinalProjectContext context)
@@ -22,7 +22,7 @@ namespace SWD392_PracinicalManagement.Pages.MedicalRecord
 
         public void OnGetSearch(string text)
         {
-            DataAccess.Models.MedicalRecord mr = _context.MedicalRecords
+            Models.MedicalRecord mr = _context.MedicalRecords
                 .Include(p => p.Patient)
                 .FirstOrDefault(p => p.Patient.Name.Contains(text) || p.MedicalRecordId.ToString().Contains(text));
             MedicalRecords.Clear();

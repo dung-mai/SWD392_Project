@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "/ExaminationResult/Detail/{resultId?}"
 @model SWD392_PracinicalManagement.Pages.ExaminationResult.DetailModel
 @{
     Layout = "_Layout";
@@ -6,73 +6,127 @@
 <h1 class="text-center m-3">Hồ sơ bệnh án</h1>
 <div class="container-fluid">
     <div class="row m-5">
-        <table class="table table-bordered table-responsive-md table-danger">
-            <tr>
-                <td class="fw-bold">Ngày tạo:</td>
-                <td>Ngày tạo</td>
-            </tr>
-            <tr>
-                <td class="fw-bold">Hồ sơ bệnh án số: </td>
-                <td>Ngày tạo</td>
-            </tr>
-            <tr>
-                <td class="fw-bold">Tên bệnh nhân: </td>
-                <td>Ngày tạo</td>
-            </tr>
-            <tr>
-                <td class="fw-bold">Giới tính</td>
-                <td>Ngày tạo</td>
-            </tr>
-            <tr>
-                <td class="fw-bold">Ngày sinh</td>
-                <td>Ngày tạo</td>
-            </tr>
-            <tr>
-                <td class="fw-bold">Địa chỉ</td>
-                <td>Ngày tạo</td>
-            </tr>
-            <tr>
-                <td class="fw-bold">Bác sĩ thực hiện:</td>
-                <td>Ngày tạo</td>
-            </tr>
-            <tr>
-                <td class="fw-bold">Chỉ định thực hiện: </td>
-                <td>Ngày tạo</td>
-            </tr>
-            <tr>
-                <td class="fw-bold">Kết quả khám</td>
-                <td>
-                    <div>
-                        <ul>
-                            <li>
-                                <p>17/07/2023</p>
-                                <p>Kết quả xét nghiệm <button class="btn btn-danger ms-3">Xem chi tiết</button> </p>
-                            </li>
-                            <li>
-                                <p>17/07/2023</p>
-                                <p>Kết quả xét nghiệm <button class="btn btn-danger ms-3">Xem chi tiết</button> </p>
-                            </li>
-                            <li>
-                                <p>17/07/2023</p>
-                                <p>Kết quả xét nghiệm <button class="btn btn-danger ms-3">Xem chi tiết</button> </p>
-                            </li>
-                            <li>
-                                <p>17/07/2023</p>
-                                <p>Kết quả xét nghiệm <button class="btn btn-danger ms-3">Xem chi tiết</button> </p>
-                            </li>
-                        </ul>
-                    </div>
-                </td>
-            </tr>
-            <tr id="importFilePreview"></tr>
-            <tr>
-                <td class="fw-bold">Ghi chú: </td>
-                <td>Ngày tạo</td>
-            </tr>
-            <tr>
-            <td class="text-center" colspan="2">
-                <input class="btn btn-outline-danger me-3" type="submit" value="Back">
-            </td>
-        </table>
+        @if (Model.Er != null)
+        {
+            <table class="table table-bordered table-responsive-md table-danger">
+                <form asp-page-handler="ImportFile" method="POST" enctype="multipart/form-data">
+                    @* <input hidden name="ErTmp.MedicalRecordNavigation" value="@Model.Er.MedicalRecordNavigation"/> *@
+                    @* <input hidden name="ErTmp.Doctor" value="@Model.Er.Doctor"/> *@
+                    @* <input hidden name="ErTmp.Service" value="@Model.Er.Service"/> *@
+                    @* <input hidden name="ErTmp.MedicalRecordNavigation.Patient" value="@Model.Er.MedicalRecordNavigation.Patient"/> *@
+                    <input hidden name="resultID" value="1"/>
+                    <tr>
+                        <td class="fw-bold">Ngày tạo:</td>
+                        @* <input name="ErTmp.CreatedAt" value="@Model.Er.CreatedAt"/> *@
+                    </tr>
+                    <tr>
+                        <td class="fw-bold">Hồ sơ bệnh án số: </td>
+                        @* <input name="ErTmp.MedicalRecord" value="@Model.Er.MedicalRecord"/> *@
+                    </tr>
+                    <tr>
+                        <td class="fw-bold">Tên bệnh nhân: </td>
+                        @* <input name="ErTmp.MedicalRecordNavigation.Patient.Name" value="@Model.Er.MedicalRecordNavigation.Patient.Name"/> *@
+                    </tr>
+                    <tr>
+                        <td class="fw-bold">Giới tính</td>
+                        @* <input name="ErTmp.MedicalRecordNavigation.Patient.Gender" value="@Model.Er.MedicalRecordNavigation.Patient.Gender"/> *@
+                    </tr>
+                    <tr>
+                        <td class="fw-bold">Ngày sinh</td>
+                        @* <input name="ErTmp.MedicalRecordNavigation.Patient.Dob" value="@Model.Er.MedicalRecordNavigation.Patient.Dob"/> *@
+                    </tr>
+                    <tr>
+                        <td class="fw-bold">Địa chỉ</td>
+                        @* <input name="ErTmp.MedicalRecordNavigation.Patient.Address" value="@Model.Er.MedicalRecordNavigation.Patient.Address"/> *@
+                    </tr>
+                    <tr>
+                        <td class="fw-bold">Bác sĩ thực hiện:</td>
+                        @* <input name="ErTmp.Doctor.Account.Name" value="@Model.Er.Doctor.Account.Name"/> *@
+                    </tr>
+                    <tr>
+                        <td class="fw-bold">Chỉ định thực hiện: </td>
+                        @* <input name="ErTmp.Service.ServiceName" value="@Model.Er.Service.ServiceName"/> *@
+                    </tr>
+                    <tr id="pdf-upload-row">
+                        <td class="fw-bold">Kết quả khám</td>
+                        <td>
+                            <div>
+                                <input id="pdf-upload" type="file" name="AttachmentFile"/>
+                                <button class="btn btn-danger">Import</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold">Chẩn đoán: </td>
+                        @* <input name="ErTmp.Description" value="@Model.Er.Description"/> *@
+                    </tr>
+                    <tr>
+                    <td class="text-center" colspan="2">
+                        <a class="btn btn-outline-danger me-3" type="button" value="Back"></a>
+                        <input class="btn btn-primary me-3" type="submit" value="Save">
+                    </td>
+                </form>
+            </table>
+        }
+        else
+        {
+            <h4>@Model.ErrorMessage</h4>
+        }
     </div>
 </div>
+
+@section Scripts
+{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.worker.min.js" integrity="sha512-lHibs5XrZL9hXP3Dhr/d2xJgPy91f2mhVAasrSbMkbmoTSm2Kz8DuSWszBLUg31v+BM6tSiHSqT72xwjaNvl0g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf_viewer.min.css" integrity="sha512-5cOE2Zw/F4SlIUHR/xLTyFLSAR0ezXsra+8azx47gJyQCilATjazEE2hLQmMY7xeAv/RxxZhs8w8zEL7dTsvnA==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+    <script>
+const pdfUpload = document.getElementById('pdf-upload');
+pdfUpload.addEventListener('change', (event) => {
+    const file = event.target.files[0];
+    if (file) {
+        let fileReader = new FileReader();
+        fileReader.onload = (e) => {
+            let typedarray = new Uint8Array(e.target.result);
+            let loadingTask = pdfjsLib.getDocument({data: typedarray});
+            
+            loadingTask.promise.then((pdf) => {
+                // Render the first page of the PDF
+                pdf.getPage(1).then((page) => {
+                    let viewport = page.getViewport({scale: 1.0});
+                    let canvas = document.createElement('canvas');
+                    let context = canvas.getContext('2d');
+                    canvas.height = Math.min(viewport.height, 600); // Limit the height to 600px
+                    canvas.width = viewport.width;
+
+                    // Remove the old preview row if it exists
+                    let oldPreviewRow = document.getElementById('pdf-preview-row');
+                    if (oldPreviewRow) {
+                        oldPreviewRow.parentNode.removeChild(oldPreviewRow);
+                    }
+
+                    // Create a new table row and add it after the upload row
+                    let previewRow = document.createElement('tr');
+                    previewRow.id = 'pdf-preview-row'; // Assign a unique id
+                    let previewCell = document.createElement('td');
+                    previewCell.colSpan = 2;
+                    let previewDiv = document.createElement('div');
+                    previewDiv.style.height = '600px';
+                    previewDiv.style.overflow = 'auto';
+                    previewDiv.appendChild(canvas);
+                    previewCell.appendChild(previewDiv);
+                    previewRow.appendChild(previewCell);
+
+                    let uploadRow = document.getElementById('pdf-upload-row');
+                    uploadRow.parentNode.insertBefore(previewRow, uploadRow.nextSibling);
+                    
+                    page.render({canvasContext: context, viewport: viewport});
+                });
+            });
+        };
+        fileReader.readAsArrayBuffer(file);
+    }
+    });
+    </script>
+}
