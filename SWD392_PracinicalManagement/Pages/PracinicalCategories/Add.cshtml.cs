@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualBasic.FileIO;
@@ -6,6 +6,7 @@ using SWD392_PracinicalManagement.IService;
 using SWD392_PracinicalManagement.Models;
 using SWD392_PracinicalManagement.Service;
 using SWD392_PracinicalManagement.Util;
+using System.Text.RegularExpressions;
 using System.Xml.Serialization;
 
 namespace SWD392_PracinicalManagement.Pages.PracinicalCategories
@@ -44,14 +45,24 @@ namespace SWD392_PracinicalManagement.Pages.PracinicalCategories
            var pracinicalCategoryName = Request.Form["pracinicalCategoryName"];
            var departmentId = Request.Form["department"];
            var description = Request.Form["description"];
-
-            PracinicalCategory p = new PracinicalCategory();
-            p.PracinicalCategoryName = pracinicalCategoryName;
-            p.DepartmentId = Int32.Parse(departmentId);
-            p.Desctiption = description;
-            p.CreatedBy = 6;
-            p.CreatedDate = DateTime.Now;
-            pService.addPracinicalCategory(p);
+            if(Validation(pracinicalCategoryName))
+            {
+                PracinicalCategory p = new PracinicalCategory();
+                p.PracinicalCategoryName = pracinicalCategoryName;
+                p.DepartmentId = Int32.Parse(departmentId);
+                p.Desctiption = description;
+                p.CreatedBy = /*LoggedInAccount.AccountId*/6;
+                p.CreatedDate = DateTime.Now;
+                pService.addPracinicalCategory(p);
+                string message = "Thêm danh mục khám cận lâm sàng thành công.";
+                TempData["message"] = message;
+            }
+            else
+            {
+                string messageError = "Tên danh mục chứa ký tự đặc biệt";
+                TempData["error-message"] = messageError;
+            }
+            
             getData();
             return Page();
         }
@@ -85,5 +96,14 @@ namespace SWD392_PracinicalManagement.Pages.PracinicalCategories
             return Page();
         }
 
+        private bool Validation(String name)
+        {
+            string specialCharactersPattern = @"[^a-zA-Z0-9_ ]";
+            if (Regex.IsMatch(name, specialCharactersPattern))
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }
