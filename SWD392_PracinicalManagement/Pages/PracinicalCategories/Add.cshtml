@@ -140,6 +140,20 @@
 			<div class="col text-center">
 				<h1>Thêm danh mục khám lâm sàng</h1>
 			</div>
+			<div class="container mt-5 mb-5">
+				@if (TempData.ContainsKey("message"))
+				{
+					<div class="wrap-notification" style="color: green;">
+						<div>@TempData["message"]</div>
+					</div>
+				}@if (TempData.ContainsKey("error-message"))
+				{
+					<div class="wrap-notification" style="color: red;">
+						<div>@TempData["error-message"]</div>
+					</div>
+				}
+			</div>
+
 		</div>
 		<form method="post">
 		<div class="row">
