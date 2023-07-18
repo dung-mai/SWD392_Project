@@ -28,11 +28,19 @@ namespace SWD392_PracinicalManagement.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+<<<<<<< HEAD
             var builder = new ConfigurationBuilder()
                               .SetBasePath(Directory.GetCurrentDirectory())
                               .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
             IConfigurationRoot configuration = builder.Build();
             optionsBuilder.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+=======
+            if (!optionsBuilder.IsConfigured)
+            {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+                optionsBuilder.UseSqlServer("server=LAPTOP-NQFGMP01\\HIEUHN0301; database=SWD392_FinalProject;uid=sa;pwd=sa123456;TrustServerCertificate=true ");
+            }
+>>>>>>> origin/hieuhn0301
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -64,8 +72,12 @@ namespace SWD392_PracinicalManagement.Models
                     .HasColumnName("name");
 
                 entity.Property(e => e.Password)
+<<<<<<< HEAD
                     .HasMaxLength(100)
                     .IsUnicode(false)
+=======
+                    .HasColumnType("text")
+>>>>>>> origin/hieuhn0301
                     .HasColumnName("password");
 
                 entity.Property(e => e.PhoneNumber)
@@ -148,9 +160,15 @@ namespace SWD392_PracinicalManagement.Models
 
                 entity.Property(e => e.ResultId).HasColumnName("resultId");
 
+                entity.Property(e => e.AttachmentFile).HasColumnName("attachmentFile");
+
                 entity.Property(e => e.CreatedAt)
                     .HasColumnType("datetime")
                     .HasColumnName("created_at");
+
+                entity.Property(e => e.Description)
+                    .HasColumnType("text")
+                    .HasColumnName("description");
 
                 entity.Property(e => e.DoctorId).HasColumnName("doctorId");
 

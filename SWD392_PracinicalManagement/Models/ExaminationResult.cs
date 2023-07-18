@@ -11,6 +11,8 @@ namespace SWD392_PracinicalManagement.Models
         public int ServiceId { get; set; }
         public DateTime? CreatedAt { get; set; }
         public DateTime? ModifiedAt { get; set; }
+        public string? Description { get; set; }
+        public byte[]? AttachmentFile { get; set; }
 
         public virtual Doctor Doctor { get; set; } = null!;
         public virtual MedicalRecord MedicalRecordNavigation { get; set; } = null!;
